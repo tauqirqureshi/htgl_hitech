@@ -49,6 +49,11 @@ class Coupan extends Page implements Forms\Contracts\HasForms
 
     public function form(Form $form): Form
     {
+        // added the  hitech_no
+        $productOptions = Product::all()->mapWithKeys(function ($product) {
+            return [$product->id => "[{$product->hitech_no}] {$product->name}  "];
+        })->toArray();
+
         return $form
             ->schema([
 
@@ -60,7 +65,10 @@ class Coupan extends Page implements Forms\Contracts\HasForms
                 //     'reviewing' => 'Reviewing',
                 //     'published' => 'Published',
                 // ])->required(),
-                Select::make('product')->options(Product::all()->pluck('name','id'))->required(),
+                Select::make('product')
+                    ->options($productOptions) // added the  hitech_no
+                    ->required()
+                    ->searchable(), // sreach for product
 
                 TextInput::make('no_of_ticket')->numeric()->step(5),
             ])->statePath('data');;
