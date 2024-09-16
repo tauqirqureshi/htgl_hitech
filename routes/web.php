@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
 
     return view('index');
-});
+})->name('home');
 
 // Route::post('/search', function () {
 //     $input = Input::get('Search');
@@ -177,3 +177,25 @@ Route::get ( '/admin/qrcodeview/', function (Request $request) {
     }
     return view('pdf2')->withMessage ( 'No Details found. Try to search again !' );;
 } );
+
+
+Route::get('/contact', function () {
+
+    return view('contact');
+})->name('contact');
+
+
+Route::get('/about', function () {
+
+    return view('about');
+})->name('about');
+
+Route::get('/certificate-verification', function () {
+
+    return view('verification');
+})->name('verification');
+
+Route::get('/terms', function () {
+
+    return view('terms');
+})->name('terms');
