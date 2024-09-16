@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Visiting Card</title>
+    <style>
+	@media print {
+  body {-webkit-print-color-adjust: exact;}
+}
+@page {
+    size:A4 landscape;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin: 0;
+    -webkit-print-color-adjust: exact;
+}
+        body {
+            font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: left;
+    align-items: start;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+        }
+		p.count-number{display:none;}
+        .card {
+            /*width: 83.00mm;
+            height: 55.00mm;
+            background-color: white;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 313px;
+            height: 206px;
+            background-image: url("https://certificate.thecrystalwaves.com/storage/image/Hi_tech_card_front_bg313.png");
+            margin-top: 10px;
+			margin-left:10px;
+			margin-right:10px;
+        }
+		.card-box-area{float:left;}
+		.card.card-odd{float:left;}
+		.card-main-content{margin-top:40px;}
+        
+		
+.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* margin-bottom: 5px; */
+            /* padding-bottom: 5px; */
+            border-bottom: 1px solid #ccc;
+        }
+        .header .left img, .header .right img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        .header .center {
+            text-align: center;
+        }
+        .header .center .title {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .header .center .subtitle {
+            font-size: 10px;
+            color: #777;
+            margin: 0;
+        }
+        .header .right .website {
+            font-size: 10px;
+            color: #777;
+            text-align: right;
+        }
+        .tested-for {
+            font-size: 10px;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+        .tested-for a {
+            color: black;
+            text-decoration: none;
+        }
+		.details{padding-left:15px;}
+        .details table {
+            width: 100%;
+            border-collapse: collapse;
+            /* margin-bottom: 5px; */
+        }
+        .details th, .details td {
+            padding: 1px;
+			padding-left:5px;
+        }
+        .details th {
+            text-align: left;
+            /* background-color: #f0f0f0; */
+            font-size: 12px;
+            font-weight: normal;
+        }
+        .details td {
+            /* text-align: left;
+            background-color: #f0f0f0; */
+            font-size: 12px;
+        }
+        .side-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 11px;
+        }
+        .side-content .qrcode img, .side-content .image img {
+            width: 63px;
+            height: 63px;
+            border-radius: 5px;
+
+        }
+        .imagedev{
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    margin: 0;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+        .footer {
+            font-size: 10px;
+            /* display: flex;
+            justify-content: space-between; */
+            /* align-items: flex; */
+            /* padding-top: 5px; */
+            border-top: 1px solid #ccc;
+            /* margin-top: 5px; */
+        }
+        .footer .certificate-no {
+            font-weight: bold;
+            text-align: center;
+        }
+        .gem-name {
+            text-align: center;
+            padding: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 5px;
+            border-radius: 5px;
+        }		
+    </style>
+</head>
+<body>
+    @if(isset($message))
+			<p>{{ $message }}</p>
+	 @endif
+    {{-- @foreach ($users as $ticket)
+    <p>This is user {{ $user->id }}</p>
+@endforeach --}}
+     @if(isset($ticketsWithUrls))
+	 <p class="count-number">{{$count=0;}}</p>
+	<div class="card-box-area">
+		@foreach ($ticketsWithUrls as $tickets)
+
+			<div class="card {{(++$count%2 ? 'card-odd' : 'card-even')}}">
+				<!--<div class="header">
+					<div class="card-header">
+						<img src="{{ asset('storage/image/Hitechcard_header.png') }}" alt="5 Mukhi Rudraksha">
+					</div>
+
+				</div>-->
+				<div class="card-main-content">
+					<!--<div class="tested-for">Tested for <a href="https://www.CrystalHeaven.in">www.CrystalHeaven.in</a></div>-->
+					<div class="imagedev">
+						<div class="details">
+							<table>
+								<!--@if($tickets->product->color)
+								<tr>
+									<th>Colour</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->color }}</td>
+								</tr>
+								@endif
+								
+								@if($tickets->product->making)
+								<tr>
+									<th>Making</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->making }}</td>
+								</tr>
+								@endif
+
+								@if($tickets->product->inclussion)
+								<tr>
+									<th>Inclussion</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->inclussion }}</td>
+								</tr>
+								@endif
+
+								@if($tickets->product->stone_name)
+								<tr>
+									<th>Stone Name</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->stone_name }}</td>
+								</tr>
+								@endif
+								
+								@if($tickets->product->species)
+								<tr>
+									<th>Species</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->species }}</td>
+								</tr>
+								@endif								
+
+								-->
+								
+								@if($tickets->product->weight)
+								<tr>
+									<th>Weight</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->weight }}</td>
+								</tr>
+								@endif
+
+								@if($tickets->product->shape)
+								<tr>
+									<th>Shape</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->shape }}</td>
+								</tr>
+								@endif
+
+
+								@if($tickets->product->ri)
+								<tr>
+									<th>R.I</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->ri }}</td>
+								</tr>
+								@endif
+								
+								@if($tickets->product->sg)
+								<tr>
+									<th>S.G</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->sg }}</td>
+								</tr>
+								@endif
+
+								@if($tickets->product->hardless)
+								<tr>
+									<th>Hardness</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->hardless }}</td>
+								</tr>
+								@endif
+
+
+								@if($tickets->product->size)
+								<tr>
+									<th>Size</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->size }}</td>
+								</tr>
+								@endif
+
+								@if($tickets->product->xrays)
+								<tr>
+									<th>X-Rays</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->xrays }}</td>
+								</tr>
+								@endif
+
+								@if($tickets->product->natural_face)
+								<tr>
+									<th>Natural Face</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->natural_face }}</td>
+								</tr>
+								@endif
+
+								@if($tickets->product->treatment_created_faces)
+								<tr>
+									<th>Treatment / Created</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->treatment_created_faces }}</td>
+								</tr>
+								@endif
+
+								
+								@if($tickets->product->indain_name)
+								<tr>
+									<th>Indain Name</th>
+									<td class="double-dot">:</td>
+									<td>{{ $tickets->product->indain_name }}</td>
+								</tr>
+								@endif
+
+
+								
+								
+							</table>
+						</div>
+						<div class="side-content">
+							<div class="image">
+								 <img src="{{ asset('storage/'.$tickets->product->image) }}" alt="5 Mukhi Rudraksha">
+							</div>
+							<div class="qrcode">
+								<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(256)->generate( $tickets->url)) !!} ">
+								 {{-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/QR_code_Wikimedia_Commons_%28URL%29.png/600px-QR_code_Wikimedia_Commons_%28URL%29.png?20110116110901" alt="QR Code"> --}}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer">
+					<div class="certificate-no">
+						Certificate No. :{{ $tickets->certificate_no }}
+					</div>
+				</div>
+				<div class="gem-name">{{ $tickets->product->name }}</div>
+			</div>
+		@endforeach
+	</div>
+    @endif
+
+
+
+</body>
+</html>
