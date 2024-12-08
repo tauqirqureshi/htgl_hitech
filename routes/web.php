@@ -183,6 +183,44 @@ Route::get('/contact', function () {
 
     return view('contact');
 })->name('contact');
+Route::post ( '/contact', function (Request $request) {
+
+
+    $validator = Validator::make($request->all(), [
+        'Name' => 'required|string|max:255',
+        'Phone' => 'required|numeric',
+        'Cname' => 'nullable|string|max:255',
+        'email' => 'required|email',
+        'information' => 'nullable|string',
+    ]);
+
+    if ($validator->fails()) {
+        // POP Message
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+
+    // info('input: '.$request);
+	$inputName = $request->input('Name');
+	$inputPhone = $request->input('Phone');
+	$inputCname = $request->input('Cname');
+	$inputEmail = $request->input('email');
+	$inputInformation = $request->input('information');
+
+
+	// $input = $request->input('email');
+
+    info('inputName: ' .$inputName);
+    info('inputPhone: ' .$inputPhone);
+    info('inputCname: ' .$inputCname);
+    info('inputEmail: ' .$inputEmail);
+    info('inputInformation: ' .$inputInformation);
+
+    // if ($input != '') {
+
+    // }
+    return view('contact');
+} );
 
 
 Route::get('/about', function () {
