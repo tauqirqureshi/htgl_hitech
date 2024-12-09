@@ -5,11 +5,11 @@
 
 <div class="container">
     <div class="row justify-content-center mb-3">
-        <div class="card me-2 col-md-3 col-xl-3">
-        <h3>Contact us</h3>
+        @include('search-form')
 
-        </div>
         <div class="card col-md-9 col-xl-9">
+            <h5 class="card-header">Contact us</h5>
+
             <form style="padding: 16px;"action='{{URL::to('/contact')}}'  method="POST" role='contantus' onsubmit="return validateForm()" >
                 {{ csrf_field() }}
                 <div class="form-row">
